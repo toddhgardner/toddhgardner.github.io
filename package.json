@@ -18,5 +18,8 @@
     "remark-smartypants": "^2.0.0",
     "@astrojs/check": "^0.9.4",
     "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
   }
 }
