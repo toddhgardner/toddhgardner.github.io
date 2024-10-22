@@ -1,8 +1,8 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-const title = 'My Astro Blog';
-const description = 'The perfect starter for your perfect blog.';
+const title = "My Astro Blog";
+const description = "The perfect starter for your perfect blog.";
 const permalink = Astro.site.href;
 ---
 
@@ -10,19 +10,42 @@ const permalink = Astro.site.href;
   <div class="home-container">
     <div class="home-copy">
       <h1>Welcome to your new Astro Blog</h1>
-      <p>Check out the docs on <a href="https://www.github.com/Charca/astro-blog-template" target="_blank" rel="noopener">GitHub</a> to get started.</p>
+      <p>
+        Check out the docs on <a
+          href="https://www.github.com/Charca/astro-blog-template"
+          target="_blank"
+          rel="noopener">GitHub</a
+        > to get started.
+      </p>
     </div>
 
     <div class="hero-image-container">
       <picture>
-        <source srcset="/assets/home-illustration.webp" media="(min-width: 600px)">
-        <img class="hero-image" alt="Illustration of person reading a book" src="/assets/home-illustration-small.webp" width="550" height="466">
+        <source
+          srcset={`${import.meta.env.BASE_URL}/assets/home-illustration.webp`}
+          media="(min-width: 600px)"
+        />
+        <img
+          class="hero-image"
+          alt="Illustration of person reading a book"
+          src="/assets/home-illustration-small.webp"
+          width="550"
+          height="466"
+        />
       </picture>
       <p class="caption">
         Illustration by
-        <a href="https://icons8.com/illustrations/author/5c07e68d82bcbc0092519bb6" target="_blank" rel="noopener">Icons 8</a>
+        <a
+          href="https://icons8.com/illustrations/author/5c07e68d82bcbc0092519bb6"
+          target="_blank"
+          rel="noopener">Icons 8</a
+        >
         from
-        <a href="https://icons8.com/illustrations" target="_blank" rel="noopener">Ouch!</a>
+        <a
+          href="https://icons8.com/illustrations"
+          target="_blank"
+          rel="noopener">Ouch!</a
+        >
       </p>
     </div>
   </div>
@@ -64,7 +87,7 @@ const permalink = Astro.site.href;
   }
 
   .caption {
-    font-size: .8em;
+    font-size: 0.8em;
     font-style: italic;
     text-align: left;
   }
