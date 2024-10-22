@@ -8,8 +8,7 @@ import rehypeExternalLinks from 'rehype-external-links'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://toddhgardner.github.io',
-  base: '/www.toddhgardner.com/',
+  site: 'https://www2.toddhgardner.com/',
   integrations: [mdx(), svelte()],
   markdown: {
     shikiConfig: {
