@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.toddhgardner.com/',
-  trailingSlash: "never",
+  trailingSlash: "always",
   integrations: [mdx(), sitemap()],
   markdown: {
     rehypePlugins: [
