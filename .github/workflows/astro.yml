@@ -68,9 +68,7 @@ jobs:
         working-directory: ${{ env.BUILD_PATH }}
       - name: Build with Astro
         run: |
-          ${{ steps.detect-package-manager.outputs.runner }} astro build \
-            --site "${{ steps.pages.outputs.origin }}" \
-            --base "${{ steps.pages.outputs.base_path }}"
+          ${{ steps.detect-package-manager.outputs.runner }} astro build
         working-directory: ${{ env.BUILD_PATH }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -88,3 +86,9 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Purge BunnyCDN Cache
+        id: purge
+        uses: eayllon/bunnycdn-purge-cache@253ab627f8e743b4d7f96e7020e8bc04377ac49d
+        with:
+          accessKey: ${{ secrets.BUNNY_API_KEY }}
+          zoneID: ${{ secrets.BUNNY_ZONE_ID }}
