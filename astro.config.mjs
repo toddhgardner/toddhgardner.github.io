@@ -1,20 +1,15 @@
 // @ts-check
 import { defineConfig } from 'astro/config'
-import svelte from '@astrojs/svelte'
 import mdx from '@astrojs/mdx'
-import remarkGfm from 'remark-gfm'
-import remarkSmartypants from 'remark-smartypants'
 import rehypeExternalLinks from 'rehype-external-links'
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www2.toddhgardner.com/',
-  integrations: [mdx(), svelte()],
+  trailingSlash: "never",
+  integrations: [mdx(), sitemap()],
   markdown: {
-    shikiConfig: {
-      theme: 'nord',
-    },
-    remarkPlugins: [remarkGfm, remarkSmartypants],
     rehypePlugins: [
       [
         rehypeExternalLinks,
