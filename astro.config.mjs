@@ -20,4 +20,10 @@ export default defineConfig({
       ],
     ],
   },
+  redirects: {
+    '/r': {
+      status: 301,
+      destination: '/'
+    }
+  }
 })
