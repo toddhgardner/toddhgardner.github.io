@@ -21,6 +21,7 @@ export default defineConfig({
     ],
   },
   redirects: {
+    // Someone is linking to this URL from some big domains, so let's capture that link juice.
     '/r': {
       status: 301,
       destination: '/'
