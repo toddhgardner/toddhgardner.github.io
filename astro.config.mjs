@@ -16,6 +16,7 @@ export default defineConfig({
         rehypeExternalLinks,
         {
           target: '_blank',
+          rel: 'noopener'
         },
       ],
     ],
