@@ -26,6 +26,10 @@ export default defineConfig({
     '/r': {
       status: 301,
       destination: '/'
-    }
+    },
+    '/contact': {
+      status: 301,
+      destination: 'https://requestmetrics.com/contact/todd/'
+    },
   }
 })
