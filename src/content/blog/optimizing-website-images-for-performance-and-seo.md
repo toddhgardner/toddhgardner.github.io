@@ -1,7 +1,7 @@
 ---
 title: "Optimizing Website Images for Performance and SEO"
 description: |-
-    If you’ve noticed your website feeling sluggish or unresponsive—especially during animations—you might be running into Long Animation Frames (LoAFs). LoAFs happen when a browser takes longer than 50 milliseconds to render an animation frame, leading to a janky experience that can frustrate users.
+    Learn how to optimize website images for faster load times, better SEO, and improved Core Web Vitals. This guide covers choosing the right format, compression, lazy loading, responsive images, and caching strategies.
 publishedOn: "2025-02-04"
 heroImage: "/blog-placeholder-2.jpg"
 ---
