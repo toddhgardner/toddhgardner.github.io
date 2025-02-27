@@ -58,7 +58,7 @@ $88/month for full monitoring
 - Uptime monitoring + RUM
 - Limited synthetic testing flexibility
 
-### SpeedCurve ($576/mo - Enterprise Monitoring)
+### Catchpoint (Enterprise Pricing Monitoring)
 - Enterprise-grade synthetic + RUM
 - Deep historical tracking & reporting
 - Expensive for smaller businesses
@@ -70,6 +70,6 @@ GTMetrix was great when it was free, but paying for one-off synthetic tests does
 - If you need quick lab tests, use PageSpeed Insights or WebPageTest.
 - If you want to track real-world performance, go with Request Metrics ($88/mo).
 - If you need uptime alerts & monitoring, Pingdom is an option.
-- For enterprise-level insights, SpeedCurve delivers—at a cost.
+- For enterprise-level insights, Catchpoint delivers—at a cost.
 
 [Read the full breakdown here](https://requestmetrics.com/web-performance/gtmetrix-alternatives/)
