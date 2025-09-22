@@ -9,7 +9,13 @@ export default defineConfig({
   site: 'https://www.toddhgardner.com/',
   // GitHub Pages always wants a trailing slash.
   trailingSlash: "always",
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) =>
+        !page.endsWith('/contact/'),
+    })
+  ],
   markdown: {
     rehypePlugins: [
       [
@@ -26,10 +32,6 @@ export default defineConfig({
     '/r': {
       status: 301,
       destination: '/'
-    },
-    '/contact': {
-      status: 301,
-      destination: 'https://requestmetrics.com/contact/todd/'
-    },
+    }
   }
 })
