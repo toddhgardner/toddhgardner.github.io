@@ -8,6 +8,8 @@ import FormattedDate from "../components/FormattedDate.astro";
 import { Image } from "astro:assets";
 import PostHog from "../components/PostHog.astro";
 
+import "../styles/global.css";
+
 const posts = (await getCollection("blog")).sort(
 	(a, b) => b.data.publishedOn.valueOf() - a.data.publishedOn.valueOf(),
 );

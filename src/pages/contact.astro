@@ -8,7 +8,18 @@ import FormattedDate from "../components/FormattedDate.astro";
 import { Picture } from "astro:assets";
 import PostHog from "../components/PostHog.astro";
 
-import headshotImage from "../images/toddhgardner.jpg";
+import calendarIcon from "../images/icons/calendar-check.svg?raw";
+import messageIcon from "../images/icons/speech-bubble.svg?raw";
+import contactIcon from "../images/icons/add-user.svg?raw";
+import blueskyIcon from "../images/icons/butterfly.svg?raw";
+import linkedinIcon from "../images/icons/linkedin.svg?raw";
+import newsletterIcon from "../images/icons/newsletter.svg?raw";
+import redditIcon from "../images/icons/reddit.svg?raw";
+import rssIcon from "../images/icons/rss.svg?raw";
+import githubIcon from "../images/icons/github.svg?raw";
+
+import "@picocss/pico/css/pico.violet.min.css";
+import "@picocss/pico/css/pico.colors.min.css";
 ---
 
 <!doctype html>
@@ -16,105 +27,260 @@ import headshotImage from "../images/toddhgardner.jpg";
 	<head>
 		<BaseHead
 			title="Contact Me • Todd H. Gardner"
-			description={SITE_DESCRIPTION}
-			robots="noindex nofollow" />
+			description={SITE_DESCRIPTION} />
+		<style>
+			.container {
+				max-width: 600px;
+				min-width: 320px;
+		    box-shadow: var(--pico-box-shadow);
+    		padding: 0 20px 20px;
+				@media(max-width: 600px) {
+					padding: 0;
+				}
+			}
+			section:not(.video) {
+				margin-left: 8px;
+				margin-right: 8px;
+				margin-bottom: 32px;
+			}
+
+			section.title {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				h1, h2 {
+					margin: 0;
+				}
+				h2 {
+					color: var(--pico-secondary);
+				}
+			}
+
+			section.contact {
+				ul,li {
+					list-style: none;
+					margin: 0;
+					padding: 0;
+				}
+				ul {
+					display: flex;
+					gap: 16px;
+					width: 100%;
+					&>li {
+						flex: 1 1 33%;
+					}
+				}
+				a {
+					text-decoration: none;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					gap: 16px;
+					text-align: center;
+					padding: 16px;
+					border-radius: 16px;
+					font-size: 0.9em;
+					svg {
+						width: 48px;
+						height: auto;
+					}
+					&:hover,&:focus,&:active {
+						text-decoration: none;
+						background-color: var(--pico-muted-border-color);
+						box-shadow: var(--pico-box-shadow);
+					}
+				}
+			}
+
+			section.links {
+				ul, li {
+					padding: 0;
+					margin: 0;
+					display: flex;
+					flex-direction: column;
+					gap: 16px;
+				}
+				ul {
+					margin: 0 20px;
+				}
+				a {
+					line-height: 1em;
+					&.trackjs {
+						--pico-primary-background: var(--pico-color-red-500);
+						--pico-primary-border: var(--pico-color-red-600);
+						--pico-primary-hover-background: var(--pico-color-red-600);
+						--pico-primary-border-background: var(--pico-color-red-700);
+					}
+					&.requestmetrics {
+						--pico-primary-background: var(--pico-color-blue-500);
+						--pico-primary-border: var(--pico-color-blue-600);
+						--pico-primary-hover-background: var(--pico-color-blue-600);
+						--pico-primary-border-background: var(--pico-color-blue-700);
+					}
+					&.certkit {
+						--pico-primary-background: var(--pico-color-cyan-500);
+						--pico-primary-border: var(--pico-color-cyan-600);
+						--pico-primary-hover-background: var(--pico-color-cyan-600);
+						--pico-primary-border-background: var(--pico-color-cyan-700);
+					}
+					&.pubconf {
+						--pico-primary-background: var(--pico-color-pumpkin-400);
+						--pico-primary-border: var(--pico-color-pumpkin-500);
+						--pico-primary-hover-background: var(--pico-color-pumpkin-500);
+						--pico-primary-border-background: var(--pico-color-pumpkin-600);
+					}
+				}
+
+			}
+
+			section.follow {
+				ul, li {
+					margin: 0;
+					padding: 0;
+					list-style: none;
+				}
+				ul {
+					margin-top: 64px;
+					display: flex;
+					gap: 32px;
+					flex-wrap: wrap;
+					justify-content: center;
+				}
+				li {
+					svg {
+						fill: var(--pico-muted-color);
+						width: 64px;
+						height: auto;
+					}
+					a:hover,a:focus,a:active {
+						svg {
+							fill: var(--pico-primary);
+						}
+					}
+				}
+			}
+
+			footer {
+				margin-top: 80px;
+				text-align: center;
+			}
+		</style>
 	</head>
 	<body>
-		<main>
+		<main class="container">
 
 			<section class="video">
-				<div style="position:relative;padding-top:56.25%;"><iframe title="Hello!" loading="eager" src="https://iframe.mediadelivery.net/embed/498473/41ac5b96-1b89-4730-8e7d-3323ecede061?autoplay=true&loop=false&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe></div>
+				<div style="position:relative;padding-top:56.25%;"><iframe title="Hello!" loading="eager" src="https://iframe.mediadelivery.net/embed/498473/41ac5b96-1b89-4730-8e7d-3323ecede061?autoplay=true&loop=false&muted=true&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe></div>
 			</section>
 
 			<section class="title">
-				<Picture
-					src={headshotImage}
-					alt="Todd H. Gardner"
-					loading="eager"
-					formats={['webp']}  />
-				<div class="text">
-					<h1>Todd H. Gardner</h1>
-					<h2>I start shit.</h2>
-				</div>
+				<h1>Todd H. Gardner</h1>
+				<h2>I start things.</h2>
 			</section>
 
 			<section class="contact">
-				<nav>
-					<menu>
-						<li>
-							<a href="https://calendar.app.google/1e5FdXNDjfSS1Zy99" title="Book a meeting">
-								Book a meeting
-							</a>
-						</li>
-						<li>
-							<a href="https://share.hsforms.com/1BT5UlZrcSQyOuEfanQDpwwebqdl" title="Send a message">
-								Send a message
-							</a>
-						</li>
-						<li>
-							<a href="/toddhgardner.vcf" download="" title="Add to contacts">
-								Add to contacts
-							</a>
-						</li>
-					</menu>
-				</nav>
+				<ul>
+					<li>
+						<a href="https://calendar.app.google/1e5FdXNDjfSS1Zy99" title="Book a meeting">
+							<Fragment set:html={calendarIcon} />
+							Book a meeting
+						</a>
+					</li>
+					<li>
+						<a href="https://share.hsforms.com/1BT5UlZrcSQyOuEfanQDpwwebqdl" title="Send a message">
+							<Fragment set:html={messageIcon} />
+							Send a message
+						</a>
+					</li>
+					<li>
+						<a href="/toddhgardner.vcf" download="" title="Add to contacts">
+							<Fragment set:html={contactIcon} />
+							Add to contacts
+						</a>
+					</li>
+				</ul>
 			</section>
 
 			<section class="links">
 				<h2>My projects</h2>
-				<nav>
-					<menu>
-						<li>
-							<a href="https://trackjs.com/" title="TrackJS">
-								TrackJS
-							</a>
-						</li>
-						<li>
-							<a href="https://requestmetrics.com/" title="Request Metrics">
-								Request Metrics
-							</a>
-						</li>
-						<li>
-							<a href="https://www.certkit.io/" title="CertKit">
-								CertKit
-							</a>
-						</li>
-						<li>
-							<a href="https://pubconf.io/" title="PubConf">
-								PubConf
-							</a>
-						</li>
-					</menu>
-				</nav>
+				<ul>
+					<li>
+						<a href="https://trackjs.com/" role="button" class="trackjs">
+							TrackJS <br>
+							<small>JavaScript Error Monitoring</small>
+						</a>
+					</li>
+					<li>
+						<a href="https://requestmetrics.com/" role="button" class="requestmetrics">
+							Request Metrics<br>
+							<small>Web Performance</small>
+						</a>
+					</li>
+					<li>
+						<a href="https://www.certkit.io/" role="button" class="certkit">
+							CertKit<br>
+							<small>SSL Certificate Management</small>
+						</a>
+					</li>
+					<li>
+						<a href="https://pubconf.io/" role="button" class="pubconf">
+							PubConf<br>
+							<small>Developer Comedy Show</small>
+						</a>
+					</li>
+					<li>
+						<a href="/" role="button">
+							My Website<br>
+							<small>Everything Else</small>
+						</a>
+					</li>
+				</ul>
 			</section>
 
 			<section class="follow">
 				<h2>Follow me</h2>
-				<nav>
-					<menu>
-						<li>
-							<a href="/feed.xml" title="RSS">RSS</a>
-						</li>
-						<li>
-							<a href="TODO" title="Newsletter">Newsletter</a>
-						</li>
-						<li>
-							<a href="https://bsky.app/profile/toddhgardner.com" title="Bluesky">Bluesky</a>
-						</li>
-						<li>
-							<a href="TODO" title="Reddit">Reddit</a>
-						</li>
-						<li>
-							<a href="TODO" title="LinkedIn">LinkedIn</a>
-						</li>
-					</menu>
-				</nav>
+				<ul>
+					<li>
+						<a href="/feed.xml" aria-label="Subscribe to RSS Feed" data-tooltip="Subscribe to RSS Feed">
+							<Fragment set:html={rssIcon} />
+						</a>
+					</li>
+					<li>
+						<a href="TODO" aria-label="Subscribe to Newsletter" data-tooltip="Subscribe to Newsletter">
+							<Fragment set:html={newsletterIcon} />
+						</a>
+					</li>
+					<li>
+						<a href="https://bsky.app/profile/toddhgardner.com" a
+							ria-label="Follow me on Bluesky" data-tooltip="Follow me on BlueSky">
+							<Fragment set:html={blueskyIcon} />
+						</a>
+					</li>
+					<li>
+						<a href="https://www.reddit.com/user/toddhgardner/"
+							aria-label="Follow me on Reddit" data-tooltip="Follow me on Reddit">
+							<Fragment set:html={redditIcon} />
+						</a>
+					</li>
+					<li>
+						<a href="https://www.linkedin.com/in/toddhgardner/"
+							aria-label="Follow me on LinkedIn" data-tooltip="Follow me on LinkedIn">
+							<Fragment set:html={linkedinIcon} />
+						</a>
+					</li>
+					<li>
+						<a href="https://github.com/toddhgardner"
+							aria-label="Follow me on GitHub" data-tooltip="Follow me on GitHub">
+							<Fragment set:html={githubIcon} />
+						</a>
+					</li>
+				</ul>
 			</section>
 
 			<footer>
-				<div class="container flex-column align-center">
+				<p>
 					I made this myself with plain HTML ❤️
-				</div>
+				</p>
 			</footer>
 
 		</main>

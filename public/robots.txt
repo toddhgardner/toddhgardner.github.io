@@ -1,5 +1,3 @@
 User-agent: *
-Disallow: /contact/
-Disallow: /toddhgardner.vcf
 
 Sitemap: https://www.toddhgardner.com/sitemap-index.xml
