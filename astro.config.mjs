@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.toddhgardner.com/',
   // GitHub Pages always wants a trailing slash.
-  trailingSlash: "never",
+  trailingSlash: "always",
   integrations: [
     mdx(),
     sitemap({
@@ -28,9 +28,9 @@ export default defineConfig({
     ],
   },
   redirects: {
-    '/hi': {
+    '/hi/': {
       status: 301,
-      destination: '/contact/'
+      destination: '/contact/?utm_source=hi'
     },
     // Someone is linking to this URL from some big domains, so let's capture that link juice.
     '/r': {
