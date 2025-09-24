@@ -12,8 +12,8 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: (page) =>
-        !page.endsWith('/contact/'),
+      // filter: (page) =>
+      //   !page.endsWith('/contact/'),
     })
   ],
   markdown: {
