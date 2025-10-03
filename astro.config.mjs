@@ -7,18 +7,19 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.toddhgardner.com/',
-  // GitHub Pages always wants a trailing slash.
+
   trailingSlash: "never",
   build: {
+    // setting the format: file builds the site so Github Pages will serve it
+    // without trailing slashes.
     format: "file"
   },
+
   integrations: [
     mdx(),
-    sitemap({
-      // filter: (page) =>
-      //   !page.endsWith('/contact/'),
-    })
+    sitemap({})
   ],
+
   markdown: {
     rehypePlugins: [
       [
@@ -30,10 +31,11 @@ export default defineConfig({
       ],
     ],
   },
+
   redirects: {
-    '/hi/': {
+    '/hi': {
       status: 301,
-      destination: '/contact/?utm_source=hi'
+      destination: '/contact?utm_source=hi'
     },
     // Someone is linking to this URL from some big domains, so let's capture that link juice.
     '/r': {
