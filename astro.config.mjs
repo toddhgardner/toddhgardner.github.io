@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.toddhgardner.com/',
   // GitHub Pages always wants a trailing slash.
-  trailingSlash: "always",
+  trailingSlash: "never",
   integrations: [
     mdx(),
     sitemap({
