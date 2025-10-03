@@ -9,6 +9,9 @@ export default defineConfig({
   site: 'https://www.toddhgardner.com/',
   // GitHub Pages always wants a trailing slash.
   trailingSlash: "never",
+  build: {
+    format: "file"
+  },
   integrations: [
     mdx(),
     sitemap({
