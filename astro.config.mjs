@@ -41,6 +41,10 @@ export default defineConfig({
     '/r': {
       status: 301,
       destination: '/'
+    },
+    '/headshot': {
+      status: 301,
+      destination: '/headshot.jpg'
     }
   }
 })
