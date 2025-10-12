@@ -3,7 +3,6 @@ title: 'Getting Done'
 description: |-
     Software isn't done. It's never done, but it can be good enough. This blog is good enough, for now. Now I'm moving forward to shipping things that matter.
 publishedOn: '2014-01-09'
-heroImage: '/blog-placeholder-3.jpg'
 ---
 
 I have a hundred things I should be doing right now. [My company](http://trackjs.com) is adding customers faster than I can count. My clients have work they need me to finish. I should be making sure my data backups work, or migrating my [email away from Google](http://fastmail.com).

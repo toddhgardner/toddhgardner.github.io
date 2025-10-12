@@ -1,0 +1,20 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import PostList from "~/components/PostList.astro";
+
+const title = "Todd H. Gardner's Blog";
+---
+
+<Layout title={title}>
+  <style>
+    section.post-list {
+      --maxTextWidth: 900px;
+      max-width: var(--maxTextWidth);
+      margin: 0 auto;
+    }
+  </style>
+  <section class="post-list">
+    <h1>{title}</h1>
+    <PostList page={true} />
+  </section>
+</Layout>

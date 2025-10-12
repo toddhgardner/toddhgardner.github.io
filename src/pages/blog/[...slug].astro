@@ -1,20 +1,122 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import { Picture } from "astro:assets";
+import { type CollectionEntry, getCollection } from "astro:content";
+import YouTubeVideo from "~/components/YouTubeVideo.astro";
+import Layout from "~/layouts/Layout.astro";
+
+import { AUTHOR_DESCRIPTION, AUTHOR_IMAGE, AUTHOR_NAME } from "~/consts";
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
 }
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BlogPost {...post.data}>
-	<Content />
-</BlogPost>
+<Layout title={`${post.data.title} • Todd H. Gardner's Blog`}>
+  <style>
+    article {
+      --maxTextWidth: 900px;
+      max-width: var(--maxTextWidth);
+      margin: 0 auto;
+
+      header {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        &>* {
+          margin: 0;
+        }
+        picture img {
+          border-radius: var(--pico-border-radius);
+        }
+        .author {
+          text-decoration: none;
+          color: unset;
+        }
+      }
+
+      footer {
+        .about {
+          padding: 16px 0;
+          display: flex;
+          gap: 32px;
+          picture {
+            flex: 0 0 120px;
+            img {
+              border-radius: 100%;
+            }
+          }
+          p {
+            font-size: 0.9em;
+          }
+        }
+      }
+    }
+  </style>
+  <article>
+    <header>
+      {post.data.video && (
+        <YouTubeVideo videoId={post.data.video.id} videoTitle={post.data.title} />
+      )}
+      {!post.data.video && post.data.image && (
+        <Picture
+          src={post.data.image}
+          alt={post.data.title}
+          formats={ ["webp"] }
+          loading="eager"
+        />
+      )}
+      <h1>{post.data.title}</h1>
+      <div>
+        <time datetime={post.data.publishedOn.toISOString()}
+            data-tooltip={post.data.publishedOn.toLocaleString()}>
+          {post.data.publishedOn.toISOString()}
+        </time>
+        • <a href={`${Astro.url.origin}/about`} class="author" title={AUTHOR_NAME}>{AUTHOR_NAME}</a>
+      </div>
+    </header>
+    <Content />
+    <footer>
+      <section class="about grid">
+        <Picture src={AUTHOR_IMAGE} formats={["webp"]}
+          alt={AUTHOR_NAME}
+          width={ 120 } />
+        <div>
+          <h3>About the author</h3>
+          <p>{AUTHOR_DESCRIPTION}</p>
+          <p><a href={`${Astro.url.origin}/about`} title={AUTHOR_NAME}>More about Todd &gt;&gt;</a></p>
+        </div>
+
+
+      </section>
+    </footer>
+  </article>
+</Layout>
+
+<script>
+  import { DateTime } from "luxon";
+
+  /**
+   * Transform the absolute ISO timestamps on blog posts into relative timestamps.
+   * This executes client-side so that it is always current to the visitors time.
+   */
+  (function relativeTime() {
+    const timeElements = document.querySelectorAll("article time[datetime]");
+
+    for (const time of timeElements) {
+      const datetime = time.getAttribute("datetime");
+      if (datetime) {
+        const dt = DateTime.fromISO(datetime);
+        const relative = dt.toRelative({ style: "narrow" });
+        time.textContent = relative;
+      }
+    }
+  })();
+</script>

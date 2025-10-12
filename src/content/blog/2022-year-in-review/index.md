@@ -3,15 +3,17 @@ title: "Update 1: 2022 Year in Review"
 description: |-
   The first of (hopefully) a new series of video updates about the web, observability, and my businesses. I had to shut down my Revue-based newsletter, which was honestly difficult to keep up with because writing is hard. Video is way more fun!
 publishedOn: '2023-01-10'
-heroImage: '/2022-year-in-review.jpg'
+image: './2022-year-in-review.jpg'
+video:
+  id: _O-7xDzdWrU
 ---
-import YouTubeVideo from '/src/components/YouTubeVideo.astro';
+<!-- import YouTubeVideo from '/src/components/YouTubeVideo.astro'; -->
 
 The first of (hopefully) a new series of video updates about the web, observability, and my businesses. I had to shut down my Revue-based newsletter, which was honestly difficult to keep up with because writing is hard. Video is way more fun!
 
 In the first update, I give a quick recap of 2022: how [TrackJS](https://trackjs.com/) did, what we are doing with [Request Metrics](https://requestmetrics.com/), and getting back to conferencing.
 
-<YouTubeVideo videoId='_O-7xDzdWrU' videoTitle={frontmatter.title} />
+<!-- <YouTubeVideo videoId='_O-7xDzdWrU' videoTitle={frontmatter.title} /> -->
 
 After a long hiatus on my newsletter and an even longer hiatus on my blog I decided to come back and do some more video week content than I'd done before.
 

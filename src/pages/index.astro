@@ -1,131 +1,81 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import { getCollection } from "astro:content";
-import FormattedDate from "../components/FormattedDate.astro";
-import { Image } from "astro:assets";
-import PostHog from "../components/PostHog.astro";
+import { Picture } from "astro:assets";
+import Layout from "~/layouts/Layout.astro";
+import PostList from "~/components/PostList.astro";
+import {
+  AUTHOR_NAME,
+  AUTHOR_TITLE,
+  CONTACT_LINK
+} from "~/consts";
+import { AUTHOR_IMAGE } from "~/consts";
 
-import "../styles/global.css";
-
-const posts = (await getCollection("blog")).sort(
-	(a, b) => b.data.publishedOn.valueOf() - a.data.publishedOn.valueOf(),
-);
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.slug}`}>
-									{post.data.heroImage && (
-										<img
-											width={720}
-											height={360}
-											src={post.data.heroImage}
-											alt={post.data.title}
-										/>
-									)}
-									{post.data.heroImageUrl && (
-										<Image
-											src={import(post.data.heroImageUrl)}
-											alt={post.data.title}
-										/>
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate
-											date={post.data.publishedOn}
-										/>
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-		<PostHog />
-	</body>
-</html>
+<Layout>
+  <style>
+    section.about {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      &>* {
+        margin: 0;
+        padding: 0;
+      }
+      picture img {
+        border-radius: 100%;
+        box-shadow: var(--pico-box-shadow);
+      }
+      .title {
+        text-align: center;
+        h1 {
+          margin: 0;
+        }
+      }
+      .subtitle {
+        font-size: 1.5rem;
+        line-height: 1.175;
+        color: var(--pico-secondary);
+      }
+      .cta {
+        width: 100%;
+        a {
+          display: block;
+        }
+      }
+    }
+  </style>
+  <div class="grid">
+    <section class="about">
+      <Picture src={AUTHOR_IMAGE} formats={["webp"]}
+        alt={ AUTHOR_NAME }
+        loading="eager"
+        width={ 240 } />
+      <div class="title">
+        <h1>{AUTHOR_NAME}</h1>
+        <div class="subtitle">{AUTHOR_TITLE}</div>
+      </div>
+      <div class="bio">
+        <p>
+          I build software businesses and create fun things on the internet. I founded
+          <a href="https://trackjs.com/" target="_blank">TrackJS</a>,
+          <a href="https://requestmetrics.com/" target="_blank">Request Metrics</a>,
+          and <a href="https://www.certkit.io" target="_blank">CertKit</a>.
+        </p>
+        <p>
+          I also do professional training, speaking engagements, and consulting on
+          product development and software engineering. I can make you better and faster at what you do.
+        </p>
+      </div>
+      <div class="cta">
+        <a role="button" href={CONTACT_LINK} target="_blank">Contact me</a>
+      </div>
+    </section>
+    <section class="posts">
+      <h2>Latest Posts</h2>
+      <PostList limit={2} page={false} />
+      <a href="/blog" style="display:block;text-align:center">Older posts</a>
+    </section>
+  </div>
+</Layout>

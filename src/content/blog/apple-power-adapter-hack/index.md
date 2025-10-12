@@ -3,7 +3,6 @@ title: 'Apple Power Adapter Hack'
 description: |-
     I just purchased a new 2015 Macbook Pro, which is fantastic. The first brand of computer that I've ever purchased more than once. But they have a major flaw: the Power Adapter cords.
 publishedOn: '2015-06-04'
-heroImage: '/blog-placeholder-3.jpg'
 ---
 
 I just purchased a new 2015 Macbook Pro, which is fantastic. The first brand of computer that I've ever purchased more than once. But they have a major flaw: the Power Adapter cords. Maybe I'm just too rough with them, but they tear and fray on me around the ends.

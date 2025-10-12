@@ -1,7 +1,7 @@
 ---
 interface Props {
-    videoId: string;
-    videoTitle: string;
+  videoId: string;
+  videoTitle: string;
 }
 
 import "lite-youtube-embed/src/lite-yt-embed.css";
@@ -10,8 +10,15 @@ const { videoId, videoTitle } = Astro.props;
 ---
 
 <script src="lite-youtube-embed/src/lite-yt-embed.js"></script>
-
+<style>
+  lite-youtube {
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--pico-border-radius);
+    box-shadow: var(--pico-box-shadow);
+  }
+</style>
 <lite-youtube
-    videoid={videoId}
-    videotitle={videoTitle}
-    params="color=white&iv_load_policy=3&modestbranding=1&rel=0"></lite-youtube>
+  videoid={videoId}
+  videotitle={videoTitle}
+  params="color=white&iv_load_policy=3&modestbranding=1&rel=0"></lite-youtube>
