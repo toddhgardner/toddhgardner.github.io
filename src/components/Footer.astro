@@ -11,7 +11,8 @@ const today = new Date();
 <footer class="container">
   <small>
     &copy; 2014-{today.getFullYear()} Todd H. Gardner • All rights reserved •
-    <a href={new URL("feed.xml", Astro.site)} target="_blank">RSS</a> •
+    <a href="https://github.com/toddhgardner/toddhgardner.github.io" target="_blank">Source</a> •
+    <a href={new URL("feed.xml", Astro.url.origin)} target="_blank">RSS</a> •
     <a href="https://buttondown.com/toddhgardner" target="_blank">Newsletter</a>
   </small>
 </footer>

@@ -8,8 +8,6 @@ interface Props {
 	image?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
 const {
 	title,
 	description,
@@ -30,13 +28,13 @@ import "@picocss/pico/css/pico.colors.min.css";
 <meta name="description" content={description} />
 <meta name="robots" content={robots}>
 <meta name="color-scheme" content="light dark">
-<link rel="sitemap" href={`${Astro.site}sitemap-index.xml`} />
-<link rel="canonical" href={canonicalURL} />
+<link rel="sitemap" href={new URL("sitemap-index.xml", Astro.url.origin)} />
+<link rel="canonical" href={new URL(Astro.url.pathname.replace(".html", ""), Astro.url.origin)} />
 <link
     rel="alternate"
     type="application/rss+xml"
     title={SITE_TITLE}
-    href={new URL("feed.xml", Astro.site)}
+    href={new URL("feed.xml", Astro.url.origin)}
 />
 
 <!-- Open Graph -->

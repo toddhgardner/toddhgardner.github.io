@@ -33,6 +33,7 @@ export default defineConfig({
   },
 
   redirects: {
+    "/blog/gtmetrix-alternatives/": "/blog/gtmetrix-alternatives",
     '/hi': {
       status: 301,
       destination: '/contact?utm_source=hi'
