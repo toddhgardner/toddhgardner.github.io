@@ -19,36 +19,11 @@ const posts = (await getCollection("blog"))
   )
   .slice(0, limit);
 ---
-<style>
-  ul.post-list {
-    &, &>li {
-      list-style: none;
-    }
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
 
-    article {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      &>* {
-        margin: 0;
-        padding: 0;
-      }
-    }
-    h3 a {
-      text-decoration: none;
-      color: unset;
-    }
-  }
-</style>
-
-<ul class="post-list">
+<ul class="unlist flex-column flex-gap-16">
   {posts.map((post) => (
     <li>
-      <article>
+      <article class="flex-column flex-gap-16">
         {post.data.video && (
           <YouTubeVideo videoId={post.data.video.id} videoTitle={post.data.title} />
         )}
@@ -56,24 +31,24 @@ const posts = (await getCollection("blog"))
           <Picture
             src={post.data.image}
             alt={post.data.title}
-            formats={ ["webp"] }
+            formats={["webp"]}
           />
         )}
         <h3>
-          <a href={`/blog/${post.slug}`} title={post.data.title}>
+          <a href={new URL(`/blog/${post.slug}`, Astro.url.origin)} class="unlink">
             {post.data.title}
           </a>
         </h3>
         <div>
-          <time datetime={post.data.publishedOn.toISOString()}
+          <time datetime={post.data.publishedOn.toISOString()} to-rel
               data-tooltip={post.data.publishedOn.toLocaleString()}>
-            {post.data.publishedOn.toISOString()}
+            {post.data.publishedOn.toLocaleDateString()}
           </time>
         </div>
         <div class="post-description">
           {post.data.description}
         </div>
-        <a href={`/blog/${post.slug}`} title={post.data.title}>
+        <a href={new URL(`/blog/${post.slug}`, Astro.url.origin)}>
           Read more &gt;&gt;
         </a>
       </article>
@@ -82,23 +57,3 @@ const posts = (await getCollection("blog"))
 }
 </ul>
 
-<script>
-  import { DateTime } from "luxon";
-
-  /**
-   * Transform the absolute ISO timestamps on blog posts into relative timestamps.
-   * This executes client-side so that it is always current to the visitors time.
-   */
-  (function relativeTime() {
-    const timeElements = document.querySelectorAll(".post-list time[datetime]");
-
-    for (const time of timeElements) {
-      const datetime = time.getAttribute("datetime");
-      if (datetime) {
-        const dt = DateTime.fromISO(datetime);
-        const relative = dt.toRelative({ style: "narrow" });
-        time.textContent = relative;
-      }
-    }
-  })();
-</script>

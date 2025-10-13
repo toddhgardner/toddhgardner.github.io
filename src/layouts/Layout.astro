@@ -37,5 +37,25 @@ const {
 
     <Footer />
     <PostHog />
+    <script>
+      import { DateTime } from "luxon";
+
+      /**
+       * Transform the absolute ISO timestamps on blog posts into relative timestamps.
+       * This executes client-side so that it is always current to the visitors time.
+       */
+      (function toRelativeTime() {
+        const timeElements = document.querySelectorAll("time[datetime][to-rel]");
+
+        for (const time of timeElements) {
+          const datetime = time.getAttribute("datetime");
+          if (datetime) {
+            const dt = DateTime.fromISO(datetime);
+            const relative = dt.toRelative({ style: "narrow" });
+            time.textContent = relative;
+          }
+        }
+      })();
+    </script>
   </body>
 </html>

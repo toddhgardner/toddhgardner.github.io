@@ -1,0 +1,80 @@
+---
+import { Picture } from "astro:assets";
+import { getCollection } from "astro:content";
+import Layout from "~/layouts/Layout.astro";
+import {
+  AUTHOR_NAME,
+} from "~/consts";
+
+
+const title = "Todd's Projects and Products";
+const description = "The products, projects, events, and stuff that Todd H. Gardner has started.";
+
+const projects = await Promise.all((await getCollection("projects"))
+  .sort((a, b) => b.data.startedOn.valueOf() - a.data.startedOn.valueOf())
+  .map(async (project) => ({
+    ...project,
+    rendered: await project.render()
+  })));
+
+---
+
+<Layout title={`${title} • ${AUTHOR_NAME}`} description={description}>
+  <style>
+    ul, li {
+      list-style: none;
+      padding: 0;
+    }
+    ul {
+      margin-top: 32px;
+    }
+    article {
+      picture {
+        padding: 32px;
+        background-color: white;
+      }
+    }
+  </style>
+
+  <section class="project-list max-text-width">
+    <h1 class="text-center">{title}</h1>
+    <div class="text-center color-secondary">{description}</div>
+    <ul>
+      {projects.map((project) => (
+        <li>
+          <article class="flex-column flex-gap-24">
+            <Picture
+              src={project.data.image}
+              alt={project.data.title}
+              formats={["webp"]}
+              widths={[900,1800]}
+              style="padding:16px;"/>
+            <h2>
+              <a href={project.data.url} class="unlink">
+                {project.data.titleLong}
+              </a>
+            </h2>
+            <div class="color-secondary">
+              <a href={project.data.url}>{new URL(project.data.url).hostname}</a> •
+              <time datetime={project.data.startedOn.toISOString()}>
+                {project.data.startedOn.toLocaleDateString()}
+              </time>
+              →
+              {project.data.completedOn ? (
+                <time datetime={project.data.startedOn.toISOString()}>
+                  {project.data.startedOn.toLocaleDateString()}
+                </time>
+              ) : "Present" }
+            </div>
+            <div>
+              <project.rendered.Content />
+            </div>
+            <div style="text-align: center;">
+              <a role="button" href={project.data.url}>Learn more about {project.data.title}</a>
+            </div>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Layout>

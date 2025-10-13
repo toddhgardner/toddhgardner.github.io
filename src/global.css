@@ -1,0 +1,59 @@
+:host,
+:root {
+  --thg-max-text-width: 900px;
+}
+
+.max-text-width {
+  max-width: var(--thg-max-text-width);
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-gap-16 {
+  gap: 16px;
+  &>* {
+    margin: 0;
+  }
+}
+
+.flex-gap-24 {
+  gap: 24px;
+  &>* {
+    margin: 0;
+  }
+}
+
+a.unlink,
+[role=link].unlink {
+  text-decoration: none;
+  color: unset;
+  &:active, &:focus, &:hover {
+    text-decoration: underline;
+    color: var(--pico-primary);
+  }
+}
+
+ul.unlist,
+ol.unlist {
+  &, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.color-secondary {
+  color: var(--pico-secondary);
+}
+
+.text-center {
+  text-align: center;
+}

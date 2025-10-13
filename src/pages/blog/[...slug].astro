@@ -22,26 +22,12 @@ const { Content } = await post.render();
 <Layout title={`${post.data.title} • Todd H. Gardner's Blog`}>
   <style>
     article {
-      --maxTextWidth: 900px;
-      max-width: var(--maxTextWidth);
-      margin: 0 auto;
-
       header {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        &>* {
-          margin: 0;
-        }
         picture img {
           border-radius: var(--pico-border-radius);
-        }
-        .author {
-          text-decoration: none;
-          color: unset;
+          box-shadow: var(--pico-box-shadow);
         }
       }
-
       footer {
         .about {
           padding: 16px 0;
@@ -60,8 +46,8 @@ const { Content } = await post.render();
       }
     }
   </style>
-  <article>
-    <header>
+  <article class="max-text-width">
+    <header class="flex-column flex-gap-24">
       {post.data.video && (
         <YouTubeVideo videoId={post.data.video.id} videoTitle={post.data.title} />
       )}
@@ -75,11 +61,11 @@ const { Content } = await post.render();
       )}
       <h1>{post.data.title}</h1>
       <div>
-        <time datetime={post.data.publishedOn.toISOString()}
+        <time datetime={post.data.publishedOn.toISOString()} to-rel
             data-tooltip={post.data.publishedOn.toLocaleString()}>
-          {post.data.publishedOn.toISOString()}
+          {post.data.publishedOn.toLocaleDateString()}
         </time>
-        • <a href={`${Astro.url.origin}/about`} class="author" title={AUTHOR_NAME}>{AUTHOR_NAME}</a>
+        • <a href={new URL("about", Astro.url.origin)} class="unlink" title={AUTHOR_NAME}>{AUTHOR_NAME}</a>
       </div>
     </header>
     <Content />
@@ -91,32 +77,10 @@ const { Content } = await post.render();
         <div>
           <h3>About the author</h3>
           <p>{AUTHOR_DESCRIPTION}</p>
-          <p><a href={`${Astro.url.origin}/about`} title={AUTHOR_NAME}>More about Todd &gt;&gt;</a></p>
+          <p><a href={new URL("about", Astro.url.origin)} title={AUTHOR_NAME}>More about Todd &gt;&gt;</a></p>
         </div>
-
 
       </section>
     </footer>
   </article>
 </Layout>
-
-<script>
-  import { DateTime } from "luxon";
-
-  /**
-   * Transform the absolute ISO timestamps on blog posts into relative timestamps.
-   * This executes client-side so that it is always current to the visitors time.
-   */
-  (function relativeTime() {
-    const timeElements = document.querySelectorAll("article time[datetime]");
-
-    for (const time of timeElements) {
-      const datetime = time.getAttribute("datetime");
-      if (datetime) {
-        const dt = DateTime.fromISO(datetime);
-        const relative = dt.toRelative({ style: "narrow" });
-        time.textContent = relative;
-      }
-    }
-  })();
-</script>

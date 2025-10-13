@@ -3,18 +3,15 @@ import Layout from "~/layouts/Layout.astro";
 import PostList from "~/components/PostList.astro";
 
 const title = "Todd H. Gardner's Blog";
+const description = "The latest software engineering ideas, writing, videos, and projects from Todd H. Gardner."
 ---
 
-<Layout title={title}>
-  <style>
-    section.post-list {
-      --maxTextWidth: 900px;
-      max-width: var(--maxTextWidth);
-      margin: 0 auto;
-    }
-  </style>
-  <section class="post-list">
-    <h1>{title}</h1>
+<Layout title={title} description={description}>
+  <section class="max-text-width">
+    <div class="text-center" style="margin-bottom: 32px;">
+      <h1>{title}</h1>
+      <div class="color-secondary">{description}</div>
+    </div>
     <PostList page={true} />
   </section>
 </Layout>
