@@ -17,6 +17,10 @@
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex-gap-16 {
   gap: 16px;
   &>* {
@@ -29,6 +33,10 @@
   &>* {
     margin: 0;
   }
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 a.unlink,

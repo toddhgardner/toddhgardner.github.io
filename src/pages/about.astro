@@ -1,0 +1,57 @@
+---
+import Picture from "astro/components/Picture.astro";
+import Layout from "~/layouts/Layout.astro";
+import {
+  AUTHOR_DESCRIPTION,
+  AUTHOR_TITLE,
+  AUTHOR_LINKS
+} from "~/consts";
+import headerImage from "../images/javacriptaire.jpg";
+
+const title = "About Todd H. Gardner";
+
+---
+
+<Layout title={title} description={AUTHOR_DESCRIPTION}>
+  <style>
+    article {
+      header {
+        picture img {
+          border-radius: var(--pico-border-radius);
+          box-shadow: var(--pico-box-shadow);
+        }
+      }
+      footer {
+        ul
+      }
+    }
+  </style>
+  <article class="max-text-width">
+    <header class="flex-column flex-gap-16">
+      <Picture
+        src={headerImage}
+        alt="Todd H. Gardner hosting 'Who Wants to be a JavaScriptAire?' at NDC Oslo"
+        formats={["webp"]}
+        loading="eager"
+        widths={[900,1200]} />
+      <h1>{title}</h1>
+      <div class="secondary">{AUTHOR_TITLE}</div>
+    </header>
+    <div class="main">
+
+    </div>
+    <footer>
+      <h2>Find me online</h2>
+      <p>
+        Sometimes I write on other platforms and social networks. Connect with me there.
+      </p>
+      <ul class="flex flex-wrap justify-center unlist">
+        {AUTHOR_LINKS.map((link) => (
+          <li>
+            <a href={link.url} rel="noopener" target="_blank">{link.name}</a>&nbsp;&nbsp;•&nbsp;&nbsp;
+          </li>
+        ))}
+      </ul>
+    </footer>
+  </article>
+</Layout>
