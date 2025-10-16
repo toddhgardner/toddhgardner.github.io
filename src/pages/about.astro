@@ -1,5 +1,5 @@
 ---
-import Picture from "astro/components/Picture.astro";
+import { Picture } from "astro:assets";
 import Layout from "~/layouts/Layout.astro";
 import {
   AUTHOR_DESCRIPTION,
@@ -20,9 +20,6 @@ const title = "About Todd H. Gardner";
           border-radius: var(--pico-border-radius);
           box-shadow: var(--pico-box-shadow);
         }
-      }
-      footer {
-        ul
       }
     }
   </style>
