@@ -12,7 +12,17 @@ const title = "About Todd H. Gardner";
 
 ---
 
-<Layout title={title} description={AUTHOR_DESCRIPTION}>
+<Layout
+  title={title}
+  description={AUTHOR_DESCRIPTION}>
+
+  <Fragment slot="og">
+    <meta property="og:type" content="profile">
+    <meta property="og:profile:first_name" content="Todd H.">
+    <meta property="og:profile:last_name" content="Gardner">
+    <meta property="og:profile:username" content="toddhgardner">
+  </Fragment>
+
   <style>
     article {
       header {

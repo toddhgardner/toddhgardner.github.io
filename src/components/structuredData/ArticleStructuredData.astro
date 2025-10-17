@@ -1,7 +1,10 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { undefined } from "astro:schema";
-import { SITE_DESCRIPTION, SITE_TITLE } from "~/consts";
+import {
+  AUTHOR_NAME,
+  AUTHOR_DESCRIPTION
+ } from "~/consts";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -33,8 +36,8 @@ const structuredData = {
   },
   author: {
     "@type": "Person",
-    name: SITE_TITLE,
-    description: SITE_DESCRIPTION,
+    name: AUTHOR_NAME,
+    description: AUTHOR_DESCRIPTION,
     url: Astro.site,
   }
 };

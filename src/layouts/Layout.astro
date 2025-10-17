@@ -3,18 +3,22 @@ import BaseHead from "~/components/BaseHead.astro";
 import Header from "~/components/Header.astro";
 import Footer from "~/components/Footer.astro";
 import PostHog from "~/components/PostHog.astro";
-
-import { SITE_TITLE, SITE_DESCRIPTION } from "~/consts";
+import shareImage from "~/images/share.png";
+import { AUTHOR_NAME } from "~/consts";
 
 interface Props {
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
+  image?: ImageMetadata
 }
 
 const {
-  title = SITE_TITLE,
-  description = SITE_DESCRIPTION
+  title,
+  description,
+  image = shareImage
 } = Astro.props as Props;
+
+const url = new URL(Astro.url.pathname.replace(".html", ""), Astro.url.origin);
 
 ---
 
@@ -23,8 +27,17 @@ const {
   <head>
     <BaseHead
       title={title}
-      description={description} />
+      description={description}
+      url={url} />
     <slot name="head" />
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:site_name" content={AUTHOR_NAME} />
+    <meta property="og:url" content={url} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content={new URL(image.src, Astro.url.origin)} />
+    <slot name="og" />
     <!-- Structured Data -->
     <slot name="structured-data" />
   </head>

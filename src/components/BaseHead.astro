@@ -1,27 +1,25 @@
 ---
 import { SITE_TITLE } from "~/consts";
-
-interface Props {
-	title: string;
-	description: string;
-	robots?: string;
-	image?: string;
-}
-
-const {
-	title,
-	description,
-	robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
-	image = "/blog-placeholder-1.jpg"
-} = Astro.props;
-
 import "@picocss/pico/css/pico.red.min.css";
 import "@picocss/pico/css/pico.colors.min.css";
 import "~/global.css";
 
+interface Props {
+  title: string;
+  description: string;
+  url?: URL;
+  robots?: string;
+}
+
+const {
+  title,
+  description,
+  url = new URL(Astro.url.pathname.replace(".html", ""), Astro.url.origin),
+  robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+} = Astro.props;
+
 ---
 
-<!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>{title}</title>
@@ -30,20 +28,13 @@ import "~/global.css";
 <meta name="robots" content={robots}>
 <meta name="color-scheme" content="light dark">
 <link rel="sitemap" href={new URL("sitemap-index.xml", Astro.url.origin)} />
-<link rel="canonical" href={new URL(Astro.url.pathname.replace(".html", ""), Astro.url.origin)} />
+<link rel="canonical" href={url} />
 <link
     rel="alternate"
     type="application/rss+xml"
     title={SITE_TITLE}
     href={new URL("feed.xml", Astro.url.origin)}
 />
-
-<!-- Open Graph -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url.origin)} />
 
 <!-- Favicons -->
 <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />

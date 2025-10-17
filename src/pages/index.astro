@@ -5,13 +5,16 @@ import PostList from "~/components/PostList.astro";
 import {
   AUTHOR_NAME,
   AUTHOR_TITLE,
+  AUTHOR_DESCRIPTION,
   CONTACT_LINK
 } from "~/consts";
 import { AUTHOR_IMAGE } from "~/consts";
 
 ---
 
-<Layout>
+<Layout
+  title={AUTHOR_NAME}
+  description={AUTHOR_DESCRIPTION}>
   <style>
     section.about {
       margin-top: 32px;

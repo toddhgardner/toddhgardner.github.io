@@ -19,7 +19,22 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<Layout title={`${post.data.title} • Todd H. Gardner's Blog`}>
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.image}>
+
+  <Fragment slot="og">
+    <meta property="og:type" content="article">
+    <meta property="og:article:published_time" content={post.data.publishedOn.toISOString()}>
+    {post.data.updatedOn ? (<meta property="og:article:modified_time" content={post.data.updatedOn.toISOString()}>) : ""}
+    <meta property="og:article:author" content={new URL('about', Astro.url.origin)}>
+    <meta property="og:article:section" content="Software Engineering">
+    {(post.data.tags ?? []).map((tag) => (
+      <meta property="og:article:tag" content={tag}>
+    ))}
+  </Fragment>
+
   <style>
     article {
       header {
@@ -46,6 +61,7 @@ const { Content } = await post.render();
       }
     }
   </style>
+
   <article class="max-text-width">
     <header class="flex-column flex-gap-24">
       {post.data.video && (
