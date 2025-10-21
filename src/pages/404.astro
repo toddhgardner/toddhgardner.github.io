@@ -18,4 +18,10 @@ const description = "There's nothing here";
     </div>
   </article>
 
+  <Fragment slot="scripts">
+    <script is:inline>
+      window.posthog && posthog.capture("404", meta);
+    </script>
+  </Fragment>
+
 </Layout>
