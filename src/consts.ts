@@ -57,7 +57,7 @@ export const AUTHOR_LINKS = [
   },
   {
     name: "YouTube",
-    url: "https://www.youtube.com/@toddhgardner"
+    url: "https://www.youtube.com/channel/UCDGtIYoIWEDNx6nHFT8UEWA"
   }
 ]
 

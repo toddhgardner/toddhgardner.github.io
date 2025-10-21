@@ -5,7 +5,7 @@ description: |-
 publishedOn: '2023-01-10'
 image: './2022-year-in-review.jpg'
 video:
-  id: _O-7xDzdWrU
+  id: dcCQo5qmbQk
 ---
 
 The first of (hopefully) a new series of video updates about the web, observability, and my businesses. I had to shut down my Revue-based newsletter, which was honestly difficult to keep up with because writing is hard. Video is way more fun!
