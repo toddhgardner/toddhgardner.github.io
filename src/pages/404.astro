@@ -1,0 +1,21 @@
+---
+import Layout from "~/layouts/Layout.astro";
+
+const title = "404 Not Found";
+const description = "There's nothing here";
+---
+
+<Layout
+  title={title}
+  description={description}
+  url={new URL("404.html", Astro.url.origin)}
+  robots="noindex, nofollow">
+
+  <article class="max-text-width text-center">
+    <h1>{title}</h1>
+    <div class="secondary">
+      Sorry! There's nothing here. Try again from <a href="/">the homepage</a>?
+    </div>
+  </article>
+
+</Layout>

@@ -9,16 +9,18 @@ import { AUTHOR_NAME } from "~/consts";
 interface Props {
   title: string;
   description: string;
+  url?: URL;
   image?: ImageMetadata
+  robots?: string
 }
 
 const {
   title,
   description,
-  image = shareImage
+  url = new URL(Astro.url.pathname.replace(".html", ""), Astro.url.origin),
+  image = shareImage,
+  robots
 } = Astro.props as Props;
-
-const url = new URL(Astro.url.pathname.replace(".html", ""), Astro.url.origin);
 
 ---
 
@@ -28,7 +30,8 @@ const url = new URL(Astro.url.pathname.replace(".html", ""), Astro.url.origin);
     <BaseHead
       title={title}
       description={description}
-      canonical={url} />
+      canonical={url}
+      robots={robots} />
 
     <slot name="head" />
     <!-- Open Graph -->
@@ -45,7 +48,7 @@ const url = new URL(Astro.url.pathname.replace(".html", ""), Astro.url.origin);
   <body>
     <Header />
 
-    <main class="container">
+    <main class="container" style="min-height: calc(100vh - 193px);">
       <slot />
     </main>
 
