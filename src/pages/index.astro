@@ -6,15 +6,36 @@ import {
   AUTHOR_NAME,
   AUTHOR_TITLE,
   AUTHOR_DESCRIPTION,
+  AUTHOR_IMAGE,
   CONTACT_LINK
 } from "~/consts";
-import { AUTHOR_IMAGE } from "~/consts";
 
 ---
 
 <Layout
   title={AUTHOR_NAME}
   description={AUTHOR_DESCRIPTION}>
+
+  <Fragment slot="structured-data">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org/",
+      "@type": "Person",
+      "@id": "https://www.toddhgardner.com/#Person",
+      "name": AUTHOR_NAME,
+      "url": "https://www.toddhgardner.com/",
+      "image": AUTHOR_IMAGE.src,
+    })} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": AUTHOR_NAME,
+      }]
+    })} />
+  </Fragment>
+
   <style>
     section.about {
       margin-top: 32px;

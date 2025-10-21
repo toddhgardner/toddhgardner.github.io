@@ -10,6 +10,34 @@ const description = "The latest software engineering ideas, writing, videos, and
   title={title}
   description={description}>
 
+  <Fragment slot="structured-data">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org/",
+      "@type" : "Blog",
+      "@id": "https://www.toddhgardner.com/blog#Blog",
+      "name": "Todd H. Gardner",
+      "publisher": {
+        "@type": "Person",
+        "@id": "https://www.toddhgardner.com/#Person",
+        "name": "Todd H. Gardner"
+      }
+    })} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Todd H. Gardner",
+        "item": "https://www.toddhgardner.com/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog"
+      }]
+    })} />
+  </Fragment>
+
   <section class="max-text-width">
     <div class="text-center" style="margin-bottom: 32px;">
       <h1>{title}</h1>

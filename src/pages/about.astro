@@ -2,7 +2,9 @@
 import { Picture } from "astro:assets";
 import Layout from "~/layouts/Layout.astro";
 import {
+  AUTHOR_NAME,
   AUTHOR_DESCRIPTION,
+  AUTHOR_IMAGE,
   AUTHOR_TITLE,
   AUTHOR_LINKS
 } from "~/consts";
@@ -21,6 +23,25 @@ const title = "About Todd H. Gardner";
     <meta property="og:profile:first_name" content="Todd H.">
     <meta property="og:profile:last_name" content="Gardner">
     <meta property="og:profile:username" content="toddhgardner">
+  </Fragment>
+
+  <Fragment slot="structured-data">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "dateCreated": "2014-01-09T00:00:00Z",
+      "dateModified": (new Date()).toISOString(),
+      "mainEntity": {
+        "@type": "Person",
+        "@id": "https://www.toddhgardner.com/#Person",
+        "name": AUTHOR_NAME,
+        "alternateName": "toddhgardner",
+        "identifier": "toddhgardner",
+        "description": AUTHOR_TITLE,
+        "image": AUTHOR_IMAGE.src,
+        "sameAs": AUTHOR_LINKS.map((link) => link.url)
+      }
+    })} />
   </Fragment>
 
   <style>
