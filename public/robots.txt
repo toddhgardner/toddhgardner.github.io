@@ -1,3 +1,5 @@
 User-agent: *
+Disallow: https://www.toddhgardner.com/contact
+Disallow: https://www.toddhgardner.com/404.html
 
 Sitemap: https://www.toddhgardner.com/sitemap-index.xml
