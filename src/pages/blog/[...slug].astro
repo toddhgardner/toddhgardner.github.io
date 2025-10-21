@@ -53,15 +53,9 @@ const { Content } = await post.render();
         "@id": "https://www.toddhgardner.com/#Person",
         "name": AUTHOR_NAME,
         "url": "https://www.toddhgardner.com/",
-        "image": AUTHOR_IMAGE.src
+        "image": new URL(AUTHOR_IMAGE.src, Astro.url.origin)
       },
-      "image": post.data.image ? {
-        "@type": "ImageObject",
-        "@id": `${post.data.image.src}#Image`,
-        "url": post.data.image.src,
-        "height": `${post.data.image.height}`,
-        "width": `${post.data.image.width}`
-      } : undefined,
+      "image": post.data.image ? new URL(post.data.image.src, Astro.url.origin) : undefined,
       "isPartOf": {
         "@type" : "Blog",
         "@id": "https://www.toddhgardner.com/blog#Blog",

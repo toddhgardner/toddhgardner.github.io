@@ -23,7 +23,7 @@ import {
       "@id": "https://www.toddhgardner.com/#Person",
       "name": AUTHOR_NAME,
       "url": "https://www.toddhgardner.com/",
-      "image": AUTHOR_IMAGE.src,
+      "image": new URL(AUTHOR_IMAGE.src, Astro.url.origin),
     })} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",

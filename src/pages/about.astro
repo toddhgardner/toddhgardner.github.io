@@ -38,7 +38,7 @@ const title = "About Todd H. Gardner";
         "alternateName": "toddhgardner",
         "identifier": "toddhgardner",
         "description": AUTHOR_TITLE,
-        "image": AUTHOR_IMAGE.src,
+        "image": new URL(AUTHOR_IMAGE.src, Astro.url.origin),
         "sameAs": AUTHOR_LINKS.map((link) => link.url)
       }
     })} />
