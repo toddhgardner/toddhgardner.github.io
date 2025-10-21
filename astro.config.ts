@@ -17,7 +17,10 @@ export default defineConfig({
 
   integrations: [
     mdx(),
-    sitemap({})
+    sitemap({
+      filter: (page) =>
+        page !== 'https://www.toddhgardner.com/contact',
+    })
   ],
 
   markdown: {
