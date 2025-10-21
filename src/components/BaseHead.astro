@@ -7,14 +7,14 @@ import "~/global.css";
 interface Props {
   title: string;
   description: string;
-  url?: URL;
+  canonical?: URL;
   robots?: string;
 }
 
 const {
   title,
   description,
-  url = new URL(Astro.url.pathname.replace(".html", ""), Astro.url.origin),
+  canonical = Astro.url,
   robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 } = Astro.props;
 
@@ -28,12 +28,12 @@ const {
 <meta name="robots" content={robots}>
 <meta name="color-scheme" content="light dark">
 <link rel="sitemap" href={new URL("sitemap-index.xml", Astro.url.origin)} />
-<link rel="canonical" href={url} />
+<link rel="canonical" href={canonical} />
 <link
-    rel="alternate"
-    type="application/rss+xml"
-    title={SITE_TITLE}
-    href={new URL("feed.xml", Astro.url.origin)}
+  rel="alternate"
+  type="application/rss+xml"
+  title={SITE_TITLE}
+  href={new URL("feed.xml", Astro.url.origin)}
 />
 
 <!-- Favicons -->

@@ -28,7 +28,8 @@ const url = new URL(Astro.url.pathname.replace(".html", ""), Astro.url.origin);
     <BaseHead
       title={title}
       description={description}
-      url={url} />
+      canonical={url} />
+
     <slot name="head" />
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
