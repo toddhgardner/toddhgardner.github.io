@@ -36,19 +36,13 @@ export default defineConfig({
   },
 
   redirects: {
-    "/blog/[...slug]/index": "/blog/[...slug]",
-    '/hi': {
-      status: 301,
-      destination: '/contact?utm_source=hi'
-    },
-    // Someone is linking to this URL from some big domains, so let's capture that link juice.
-    '/r': {
-      status: 301,
-      destination: '/'
-    },
-    '/headshot': {
-      status: 301,
-      destination: '/headshot.jpg'
-    }
+    "/article/[...slug]": "/blog/[...slug]",      // very old blog format that still gets some clicks
+    "/blog/[...slug]/index": "/blog/[...slug]",   // jekyll-style links. this captures both trailing slash and index
+    "/contact/": "/contact",
+    "/r": "/",                                    // Someone is linking to this URL
+
+    // convenience helpers
+    "/hi": "/contact?utm_source=hi",
+    "/headshot": "/headshot.jpg"
   }
 })
