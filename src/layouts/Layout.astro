@@ -83,8 +83,8 @@ const {
         const roleLinks = Array.from(document.querySelectorAll("[role=link][data-href]"));
         for(const rl of roleLinks) {
           rl.addEventListener("click", (evt) => {
-            if (["A", "BUTTON"].indexOf(evt.target?.tagName) >= 0) { return; }
-            window.location = rl.getAttribute("data-href");
+            if (["A", "BUTTON"].indexOf((evt.target as HTMLElement)?.tagName) >= 0) { return; }
+            (window.location as any) = rl.getAttribute("data-href");
           });
         }
       })();
