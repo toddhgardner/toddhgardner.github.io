@@ -6,54 +6,67 @@ import YouTubeVideo from "./YouTubeVideo.astro";
 interface Props {
   limit?: number
   page?: boolean
+  tag?: string
 }
 
 const {
   limit = 20,
+  tag
   // page = true
 } = Astro.props;
 
 const posts = (await getCollection("blog"))
+  .filter((post: any) => tag ? post.data.tags?.includes(tag) : true)
   .sort(
     (a, b) => b.data.publishedOn.valueOf() - a.data.publishedOn.valueOf(),
   )
   .slice(0, limit);
 ---
-
+<style>
+  a.tag {
+    padding: 0px 8px;
+  }
+</style>
 <ul class="unlist flex-column flex-gap-16">
-  {posts.map((post) => (
-    <li>
-      <article class="flex-column flex-gap-16">
-        {post.data.video && (
-          <YouTubeVideo videoId={post.data.video.id} videoTitle={post.data.title} />
-        )}
-        {!post.data.video && post.data.image && (
-          <Picture
-            src={post.data.image}
-            alt={post.data.title}
-            formats={["webp"]}
-          />
-        )}
-        <h3>
-          <a href={new URL(`/blog/${post.slug}`, Astro.url.origin)} class="unlink">
-            {post.data.title}
+  {posts.map((post) => {
+    const url = new URL(`/blog/${post.slug}`, Astro.url.origin);
+    return (
+      <li>
+        <article class="flex-column flex-gap-16" role="link" data-href={url}>
+          {post.data.video && (
+            <YouTubeVideo videoId={post.data.video.id} videoTitle={post.data.title} />
+          )}
+          {!post.data.video && post.data.image && (
+            <Picture
+              src={post.data.image}
+              alt={post.data.title}
+              formats={["webp"]}
+            />
+          )}
+          <h3>
+            <a href={url} class="unlink">
+              {post.data.title}
+            </a>
+          </h3>
+          <div class="flex flex-gap-24 flex-wrap">
+            <time datetime={post.data.publishedOn.toISOString()} to-rel
+                data-tooltip={post.data.publishedOn.toLocaleString()}>
+              {post.data.publishedOn.toLocaleDateString()}
+            </time>
+            {post.data.tags?.map((tag) => (
+              <a href={new URL(`/blog/tags/${tag}`, Astro.url.origin)} role="button" class="tag secondary">{tag}</a>
+            ))}
+          </div>
+          <div class="post-description">
+            {post.data.description}
+          </div>
+          <a href={url}>
+            Read more &gt;&gt;
           </a>
-        </h3>
-        <div>
-          <time datetime={post.data.publishedOn.toISOString()} to-rel
-              data-tooltip={post.data.publishedOn.toLocaleString()}>
-            {post.data.publishedOn.toLocaleDateString()}
-          </time>
-        </div>
-        <div class="post-description">
-          {post.data.description}
-        </div>
-        <a href={new URL(`/blog/${post.slug}`, Astro.url.origin)}>
-          Read more &gt;&gt;
-        </a>
-      </article>
-    </li>
-  ))
+        </article>
+      </li>
+    )
+  })
 }
 </ul>
 

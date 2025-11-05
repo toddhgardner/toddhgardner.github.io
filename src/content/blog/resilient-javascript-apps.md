@@ -3,6 +3,7 @@ title: "The Hotel WiFi Problem: Building Resilient JavaScript Apps"
 publishedOn: 2025-10-16 12:43 PM -5:00
 description: |-
   Your app works everywhere except that one customer's corporate network. Here's how to build JavaScript apps that survive hostile networks, captive portals, and the special hell of hotel WiFi.
+tags: ["javascript", "trackjs", "error handling"]
 ---
 
 Your app works everywhere except that one customer's corporate network. Sound familiar?

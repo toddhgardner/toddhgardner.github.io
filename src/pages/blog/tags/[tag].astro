@@ -1,9 +1,25 @@
 ---
-import Layout from "~/layouts/Layout.astro";
-import PostList from "~/components/PostList.astro";
+import PostList from '~/components/PostList.astro';
+import Layout from '~/layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
-const title = "Todd H. Gardner's Blog";
-const description = "The latest software engineering ideas, writing, videos, and projects from Todd H. Gardner."
+export async function getStaticPaths() {
+  const tags = new Set<string>();
+  const posts = await getCollection('blog');
+
+  posts.forEach(post => {
+    post.data.tags?.forEach(tag => tags.add(tag));
+  });
+
+  return Array.from(tags).map(tag => ({
+    params: { tag }
+  }));
+}
+
+const { tag } = Astro.params;
+
+const title = `Todd's ${tag} Posts`;
+const description = `The latest content about ${tag} from Todd H. Gardner.`;
 ---
 
 <Layout
@@ -43,13 +59,14 @@ const description = "The latest software engineering ideas, writing, videos, and
       <nav aria-label="breadcrumb">
         <ul>
           <li><a href={new URL("/", Astro.url.origin)} class="unlink">Home</a></li>
-          <li>Blog</li>
+          <li><a href={new URL("/blog", Astro.url.origin)} class="unlink">Blog</a></li>
+          <li>{tag}</li>
         </ul>
       </nav>
 
       <h1>{title}</h1>
       <div class="color-secondary">{description}</div>
     </div>
-    <PostList page={true} />
+    <PostList page={true} tag={tag} />
   </section>
 </Layout>

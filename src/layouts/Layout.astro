@@ -73,6 +73,21 @@ const {
           }
         }
       })();
+
+      /**
+       * I use role=link for list items that I want to be clickable, but there
+       * may be a link inside it as well. This wouldn't be valid HTML, so the outer
+       * uses this accessible JavaScript method to create a link.
+       */
+      (function enableRoleLinks() {
+        const roleLinks = Array.from(document.querySelectorAll("[role=link][data-href]"));
+        for(const rl of roleLinks) {
+          rl.addEventListener("click", (evt) => {
+            if (["A", "BUTTON"].indexOf(evt.target?.tagName) >= 0) { return; }
+            window.location = rl.getAttribute("data-href");
+          });
+        }
+      })();
     </script>
     <slot name="scripts"></slot>
   </body>

@@ -3,6 +3,7 @@ title: "How to Fix Long Animation Frames (LoAF) and Speed Up Your Website"
 description: |-
     If you’ve noticed your website feeling sluggish or unresponsive—especially during animations—you might be running into Long Animation Frames (LoAFs). LoAFs happen when a browser takes longer than 50 milliseconds to render an animation frame, leading to a janky experience that can frustrate users.
 publishedOn: "2024-10-23"
+tags: ["web performance", "request metrics"]
 ---
 
 If you’ve noticed your website feeling sluggish or unresponsive—especially during animations—you might be running into **Long Animation Frames (LoAFs)**. LoAFs happen when a browser takes longer than 50 milliseconds to render an animation frame, leading to a janky experience that can frustrate users. But what exactly are LoAFs, and how can you fix them to ensure your site runs buttery smooth?

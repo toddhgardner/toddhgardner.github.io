@@ -49,6 +49,19 @@ a.unlink,
   }
 }
 
+[role=link] {
+  --pico-color: unset;
+  --pico-text-decoration: unset;
+  cursor: pointer;
+}
+
+[role=link]:is([aria-current]:not([aria-current=false]),:hover,:active,:focus) {
+  --pico-color: unset;
+  --pico-text-decoration: unset;
+  background-color: var(--pico-muted-border-color);
+}
+
+
 ul.unlist,
 ol.unlist {
   &, li {
@@ -64,4 +77,8 @@ ol.unlist {
 
 .text-center {
   text-align: center;
+}
+
+nav[aria-label="breadcrumb"] {
+  font-size: 0.9em;
 }

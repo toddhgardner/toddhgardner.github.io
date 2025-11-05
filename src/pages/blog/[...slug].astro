@@ -114,9 +114,19 @@ const { Content } = await post.render();
         }
       }
     }
+    a.tag {
+      padding: 0px 8px;
+    }
   </style>
 
   <article class="max-text-width">
+    <nav aria-label="breadcrumb">
+      <ul>
+        <li><a href={new URL("/", Astro.url.origin)} class="unlink">Home</a></li>
+        <li><a href={new URL("/blog", Astro.url.origin)} class="unlink">Blog</a></li>
+      </ul>
+    </nav>
+
     <header class="flex-column flex-gap-24">
       {post.data.video && (
         <YouTubeVideo videoId={post.data.video.id} videoTitle={post.data.title} />
@@ -130,12 +140,15 @@ const { Content } = await post.render();
         />
       )}
       <h1>{post.data.title}</h1>
-      <div>
+      <div class="flex flex-wrap flex-gap-16">
         <time datetime={post.data.publishedOn.toISOString()} to-rel
             data-tooltip={post.data.publishedOn.toLocaleString()}>
           {post.data.publishedOn.toLocaleDateString()}
         </time>
         • <a href={new URL("about", Astro.url.origin)} class="unlink" title={AUTHOR_NAME}>{AUTHOR_NAME}</a>
+        •  {post.data.tags?.map((tag) => (
+          <a href={new URL(`/blog/tags/${tag}`, Astro.url.origin)} role="button" class="tag secondary">{tag}</a>
+        ))}
       </div>
     </header>
     <Content />
