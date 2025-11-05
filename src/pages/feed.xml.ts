@@ -23,6 +23,7 @@ export async function GET(context: APIContext) {
       guid: `/blog/${post.slug}`,
       author: AUTHOR_NAME,
       pubDate: post.data.publishedOn,
+      categories: post.data.tags,
 
       /**
        * NOTE: Content rendering does not work correctly without a lot of manual
