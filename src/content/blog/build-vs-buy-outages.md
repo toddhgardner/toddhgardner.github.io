@@ -41,7 +41,7 @@ Some things you should probably buy, even if you don't buy them from me.
 
 - **Error monitoring?** Buy it. ([TrackJS](https://trackjs.com))
 - **Performance monitoring?** Buy it. ([Request Metrics](https://requestmetrics.com))
-- **SSL certificate management?** Definitely buy it. ([CertKit](https://www.certkit.com/))
+- **SSL certificate management?** Definitely buy it. ([CertKit](https://www.certkit.io/))
 
 These aren't your core business. They're solved problems. Building them yourself is like Jurassic Park deciding to build their own door locks. How did that work out?
 
