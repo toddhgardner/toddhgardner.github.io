@@ -2,6 +2,11 @@ import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
 import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR_NAME } from "~/consts";
+// import sanitizeHtml from 'sanitize-html';
+import markdownIt from 'markdown-it'
+const md = markdownIt({
+  html: true
+})
 
 export async function GET(context: APIContext) {
   const posts = (await getCollection("blog"))
@@ -33,6 +38,7 @@ export async function GET(context: APIContext) {
        * @see https://docs.astro.build/en/recipes/rss/
        */
       // content: ??
+      content: md.render(post.body)
     }))
   });
 }
