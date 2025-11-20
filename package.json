@@ -20,13 +20,12 @@
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
     "@types/luxon": "^3.7.1",
-    "@types/markdown-it": "^14.1.2",
-    "@types/sanitize-html": "^2.16.0",
     "astro": "^5.13.0",
     "markdown-it": "^14.1.0",
     "prettier": "^3.3.3",
     "rehype-external-links": "^3.0.0",
     "sanitize-html": "^2.17.0",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "ultrahtml": "^1.6.0"
   }
 }
