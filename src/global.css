@@ -21,6 +21,13 @@
   flex-wrap: wrap;
 }
 
+.flex-gap-8 {
+  gap: 8px;
+  &>* {
+    margin: 0;
+  }
+}
+
 .flex-gap-16 {
   gap: 16px;
   &>* {

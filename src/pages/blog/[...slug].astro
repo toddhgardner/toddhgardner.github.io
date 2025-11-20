@@ -113,9 +113,17 @@ const { Content } = await post.render();
           }
         }
       }
-    }
-    a.tag {
-      padding: 0px 8px;
+      @media(max-width: 768px) {
+        margin-right: calc(-1 * var(--pico-spacing));
+        margin-left: calc(-1 * var(--pico-spacing));
+        footer {
+          .about {
+            picture {
+              display: none;
+            }
+          }
+        }
+      }
     }
   </style>
 
@@ -140,16 +148,21 @@ const { Content } = await post.render();
         />
       )}
       <h1>{post.data.title}</h1>
-      <div class="flex flex-wrap flex-gap-16">
+      <div class="flex flex-wrap flex-gap-8">
         <time datetime={post.data.publishedOn.toISOString()} to-rel
             data-tooltip={post.data.publishedOn.toLocaleString()}>
           {post.data.publishedOn.toLocaleDateString()}
         </time>
-        • <a href={new URL("about", Astro.url.origin)} class="unlink" title={AUTHOR_NAME}>{AUTHOR_NAME}</a>
-        •  {post.data.tags?.map((tag) => (
-          <a href={new URL(`/blog/tags/${tag}`, Astro.url.origin)} role="button" class="tag secondary">{tag}</a>
-        ))}
+        •
+        <a href={new URL("about", Astro.url.origin)} class="unlink" title={AUTHOR_NAME}>{AUTHOR_NAME}</a>
       </div>
+      <ul class="unlist flex flex-gap-8 flex-wrap">
+        {post.data.tags?.map((tag) => (
+          <li>
+            <a href={new URL(`/blog/tags/${tag}`, Astro.url.origin)} class="secondary">#{tag}</a>
+          </li>
+        ))}
+      </ul>
     </header>
     <Content />
     <footer>

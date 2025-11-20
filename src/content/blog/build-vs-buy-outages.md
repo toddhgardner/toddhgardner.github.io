@@ -62,7 +62,3 @@ But they would have been just as wrong to outsource everything to InGen Cloud Se
 Build what makes you unique. Buy what makes you run. And whatever you do, make sure you understand how it works well enough to fix it when it breaks.
 
 Because it will break. And when it does, "we're experiencing higher than normal call volumes" isn't going to cut it with your customers.
-
----
-
-*Todd Gardner is the CEO and co-founder of TrackJS, Request Metrics, and CertKit. He's been building software for over 20 years and has strong opinions about JavaScript, infrastructure, and dinosaurs.*

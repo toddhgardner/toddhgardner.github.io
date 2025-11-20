@@ -2,6 +2,7 @@
 import { Picture } from "astro:assets";
 import { getCollection } from "astro:content";
 import YouTubeVideo from "./YouTubeVideo.astro";
+import { AUTHOR_NAME } from "~/consts";
 
 interface Props {
   limit?: number
@@ -22,11 +23,7 @@ const posts = (await getCollection("blog"))
   )
   .slice(0, limit);
 ---
-<style>
-  a.tag {
-    padding: 0px 8px;
-  }
-</style>
+
 <ul class="unlist flex-column flex-gap-16">
   {posts.map((post) => {
     const url = new URL(`/blog/${post.slug}`, Astro.url.origin);
@@ -48,15 +45,21 @@ const posts = (await getCollection("blog"))
               {post.data.title}
             </a>
           </h3>
-          <div class="flex flex-gap-24 flex-wrap">
+          <div class="flex flex-gap-8 flex-wrap">
             <time datetime={post.data.publishedOn.toISOString()} to-rel
                 data-tooltip={post.data.publishedOn.toLocaleString()}>
               {post.data.publishedOn.toLocaleDateString()}
             </time>
-            {post.data.tags?.map((tag) => (
-              <a href={new URL(`/blog/tags/${tag}`, Astro.url.origin)} role="button" class="tag secondary">{tag}</a>
-            ))}
+            •
+            <a href={new URL("about", Astro.url.origin)} class="unlink" title={AUTHOR_NAME}>{AUTHOR_NAME}</a>
           </div>
+          <ul class="unlist flex flex-gap-8 flex-wrap">
+            {post.data.tags?.map((tag) => (
+              <li>
+                <a href={new URL(`/blog/tags/${tag}`, Astro.url.origin)} class="secondary">#{tag}</a>
+              </li>
+            ))}
+          </ul>
           <div class="post-description">
             {post.data.description}
           </div>
