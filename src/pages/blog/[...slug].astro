@@ -5,10 +5,11 @@ import YouTubeVideo from "~/components/YouTubeVideo.astro";
 import Layout from "~/layouts/Layout.astro";
 
 import { AUTHOR_DESCRIPTION, AUTHOR_IMAGE, AUTHOR_NAME } from "~/consts";
+import { slugRewrite } from "~/util";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({
+  return posts.map(slugRewrite).map((post) => ({
     params: { slug: post.slug },
     props: post,
   }));

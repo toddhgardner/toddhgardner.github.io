@@ -3,6 +3,7 @@ import { Picture } from "astro:assets";
 import { getCollection } from "astro:content";
 import YouTubeVideo from "./YouTubeVideo.astro";
 import { AUTHOR_NAME } from "~/consts";
+import { slugRewrite } from "~/util";
 
 interface Props {
   limit?: number
@@ -17,6 +18,7 @@ const {
 } = Astro.props;
 
 const posts = (await getCollection("blog"))
+  .map(slugRewrite)
   .filter((post: any) => tag ? post.data.tags?.includes(tag) : true)
   .sort(
     (a, b) => b.data.publishedOn.valueOf() - a.data.publishedOn.valueOf(),

@@ -6,9 +6,11 @@ import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR_NAME } from "~/consts";
 import { transform, walk } from "ultrahtml";
 import sanitize from "ultrahtml/transformers/sanitize";
+import { slugRewrite } from "~/util";
 
 export async function GET(context: APIContext) {
   const posts = (await getCollection("blog"))
+    .map(slugRewrite)
     .sort((a, b) => b.data.publishedOn.valueOf() - a.data.publishedOn.valueOf());
 
   // Get the URL to prepend to relative site links. Based on `site` in `astro.config.mjs`.

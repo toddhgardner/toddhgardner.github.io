@@ -16,7 +16,7 @@ My main computer is a 2016 15" Macbook Pro from before the touchbar garbage. I l
 
 The hardware on the iPad Pro is amazing. It's light. It's fast. It's responsive. It's almost perfect, except for:
 
-![Uneven keyboard cover on the iPad Pro](ipad-pro-cover.png)
+![Uneven keyboard cover on the iPad Pro](!/blog/pub-productivity-and-the-surface-pro/ipad-pro-cover.png)
 
 Seriously, doesn't that drive you crazy? Why Apple, why?
 
