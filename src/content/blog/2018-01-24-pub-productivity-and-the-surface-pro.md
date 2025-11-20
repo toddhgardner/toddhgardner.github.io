@@ -3,6 +3,8 @@ title: 'Pub Productivity and the Surface Pro'
 description: |-
     I wanted a device for working from the Pub. As a small-business owner, I'm always working: at home, at lunch, at happy-hour. I wanted a device more portable than my workhorse laptop so that I could effortlessly bring it with me, but more functional than my mobile phone.
 publishedOn: '2018-01-24'
+tags:
+  - Productivity
 ---
 
 I wanted a device for working from the Pub. As a small-business owner, I'm always working: at home, at lunch, at happy-hour. I wanted a device more portable than my workhorse laptop so that I could effortlessly bring it with me, but more functional than my mobile phone.

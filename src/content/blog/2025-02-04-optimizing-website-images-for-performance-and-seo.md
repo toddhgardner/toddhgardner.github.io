@@ -3,7 +3,9 @@ title: "Optimizing Website Images for Performance and SEO"
 description: |-
     Learn how to optimize website images for faster load times, better SEO, and improved Core Web Vitals. This guide covers choosing the right format, compression, lazy loading, responsive images, and caching strategies.
 publishedOn: "2025-02-04"
-tags: ["web performance", "request metrics", "seo"]
+tags:
+  - Web Performance
+  - Request Metrics
 ---
 
 Images are essential for modern websites—they make content engaging, visually appealing, and more clickable. But they’re also **one of the biggest performance bottlenecks**. Large, unoptimized images **slow down load times, hurt Core Web Vitals, and damage SEO rankings**.

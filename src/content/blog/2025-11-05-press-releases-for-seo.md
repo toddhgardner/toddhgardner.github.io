@@ -3,7 +3,10 @@ title: "I tried doing a Press Releases for SEO. It didn't work."
 publishedOn: 2025-11-05
 description: |-
   An honest look at using press releases for link building and SEO in 2025. Spoiler: save your money.
-tags: ["seo", "marketing", "certkit", "startup"]
+tags:
+  - Business
+  - Marketing
+  - CertKit
 ---
 
 Let me save you $150 and some disappointment: **press releases for SEO don't work**.

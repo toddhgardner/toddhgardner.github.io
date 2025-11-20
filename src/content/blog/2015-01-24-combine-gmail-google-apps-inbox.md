@@ -3,6 +3,9 @@ title: 'Combine Gmail and Google Apps Inboxes'
 description: |-
     I've recently setup a Google Apps account for TrackJS. Right away I missed having all my email in one place--don't make me have two tabs open Google!
 publishedOn: '2015-01-24'
+tags:
+  - Productivity
+  - TrackJS
 ---
 
 I've recently setup a [Google Apps][google-apps] account for [TrackJS][trackjs]. Right away I missed having all my email in one place--don't make me have two tabs open Google!

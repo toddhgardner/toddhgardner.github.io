@@ -5,7 +5,12 @@ description: |-
 publishedOn: '2025-11-18'
 video:
   id: psAHTBTSM1w
-tags: ["video", "trackjs", "conference"]
+tags:
+  - Engineering
+  - Leadership
+  - Business
+  - Video
+  - Conference
 ---
 
 We were so preoccupied with whether we could, we didn’t stop to think if we should. Nowhere at Jurassic Park was this more true than how we developed software. Having the wrong software and support structures was a key factor in the failures of our first park. We were entrepreneurs launching something new and architects integrating an enterprise. And our decisions had lasting consequences. Deciding which problems were worth our time was foundational to our failure.

@@ -5,7 +5,10 @@ description: |-
 publishedOn: 2025-10-21
 video:
   id: Vs4-U4Jie6c
-tags: ["video", "podcast", "web performance"]
+tags:
+  - Video
+  - Podcast
+  - Web Performance
 ---
 
 Here's another great snippet from my appearance on [Henri Helvetica's SPDY Podcast](/blog/spdy-stream-008) where we talked about Web Performance.
