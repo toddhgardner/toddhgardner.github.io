@@ -49,10 +49,7 @@ export async function GET(context: APIContext) {
       sanitize({ dropElements: ["script", "style"] }),
     ]);
 
-    if (post.data.video) {
-      content = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${post.data.video.id}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>` + content;
-    }
-    else if (post.data.image) {
+    if (post.data.image) {
       content = `<picture><img src="${baseUrl + post.data.image.src}" alt="${post.data.title}" width="${post.data.image.width}" height="${post.data.image.height}" class="webfeedsFeaturedVisual" /></picture>` + content;
     }
 
@@ -64,13 +61,7 @@ export async function GET(context: APIContext) {
       categories: post.data.tags,
       description: post.data.description,
       customData: post.data.video ? `
-        <id>yt:video:${post.data.video.id}</id>
-        <yt:videoId>${post.data.video.id}</yt:videoId>
-        <media:group>
-          <media:title>${post.data.title}</media:title>
-          <media:content url="https://www.youtube.com/v/${post.data.video.id}?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
-          <media:thumbnail url="https://i2.ytimg.com/vi/${post.data.video.id}/hqdefault.jpg" width="480" height="360"/>
-        </media:group>` : "",
+        <media:content url="https://www.youtube.com/embed/${post.data.video.id}" />` : "",
       content: content
     });
 
@@ -79,8 +70,7 @@ export async function GET(context: APIContext) {
   return await rss({
     xmlns: {
       atom: "http://www.w3.org/2005/Atom",
-      media: "http://search.yahoo.com/mrss/",
-      yt: "http://www.youtube.com/xml/schemas/2015"
+      media: "http://search.yahoo.com/mrss/"
     },
     trailingSlash: false,
     title: SITE_TITLE,
