@@ -61,7 +61,13 @@ export async function GET(context: APIContext) {
       categories: post.data.tags,
       description: post.data.description,
       customData: post.data.video ? `
-        <media:content url="https://www.youtube.com/embed/${post.data.video.id}" />` : "",
+        <media:content url="https://www.youtube.com/watch?v=${post.data.video.id}" type="text/html" medium="video">
+          <media:player url="https://www.youtube.com/watch?v=${post.data.video.id}"/>
+          <media:title>${post.data.title}</media:title>
+          <media:description>${post.data.description}</media:description>
+          <media:thumbnail url="https://img.youtube.com/vi/${post.data.video.id}/maxresdefault.jpg"/>
+        </media:content>`
+        : "",
       content: content
     });
 
