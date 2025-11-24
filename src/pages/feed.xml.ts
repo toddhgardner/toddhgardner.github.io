@@ -34,7 +34,7 @@ export async function GET(context: APIContext) {
     // - Makes link `href` and image `src` attributes absolute instead of relative
     // - Strips any `<script>` and `<style>` tags
     // Thanks @Princesseuh — https://github.com/Princesseuh/erika.florist/blob/1827288c14681490fa301400bfd815acb53463e9/src/middleware.ts
-    const content = await transform(rawContent.replace(/^<!DOCTYPE html>/, ''), [
+    let content = await transform(rawContent.replace(/^<!DOCTYPE html>/, ''), [
       async (node) => {
         await walk(node, (node) => {
           if (node.name === "a" && node.attributes.href?.startsWith("/")) {
@@ -49,6 +49,13 @@ export async function GET(context: APIContext) {
       sanitize({ dropElements: ["script", "style"] }),
     ]);
 
+    if (post.data.video) {
+      content = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${post.data.video.id}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>` + content;
+    }
+    else if (post.data.image) {
+      content = `<picture><img src="${baseUrl + post.data.image.src}" alt="${post.data.title}" width="${post.data.image.width}" height="${post.data.image.height}" class="webfeedsFeaturedVisual" /></picture>` + content;
+    }
+
     feedItems.push({
       title: post.data.title,
       link: `/blog/${post.slug}`,
@@ -56,6 +63,7 @@ export async function GET(context: APIContext) {
       pubDate: post.data.publishedOn,
       categories: post.data.tags,
       description: post.data.description,
+      customData: post.data.video ? `<media:content url="https://www.youtube.com/watch?v=${post.data.video.id}" type="video/mp4" />` : "",
       content: content
     });
 
@@ -63,7 +71,8 @@ export async function GET(context: APIContext) {
 
   return await rss({
     xmlns: {
-      atom: "http://www.w3.org/2005/Atom"
+      atom: "http://www.w3.org/2005/Atom",
+      media: "http://search.yahoo.com/mrss/"
     },
     trailingSlash: false,
     title: SITE_TITLE,
