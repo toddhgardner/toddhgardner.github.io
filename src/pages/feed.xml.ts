@@ -63,7 +63,14 @@ export async function GET(context: APIContext) {
       pubDate: post.data.publishedOn,
       categories: post.data.tags,
       description: post.data.description,
-      customData: post.data.video ? `<media:content url="https://www.youtube.com/watch?v=${post.data.video.id}" type="video/mp4" />` : "",
+      customData: post.data.video ? `
+        <id>yt:video:${post.data.video.id}</id>
+        <yt:videoId>${post.data.video.id}</yt:videoId>
+        <media:group>
+          <media:title>${post.data.title}</media:title>
+          <media:content url="https://www.youtube.com/v/${post.data.video.id}?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+          <media:thumbnail url="https://i2.ytimg.com/vi/${post.data.video.id}/hqdefault.jpg" width="480" height="360"/>
+        </media:group>` : "",
       content: content
     });
 
@@ -72,7 +79,8 @@ export async function GET(context: APIContext) {
   return await rss({
     xmlns: {
       atom: "http://www.w3.org/2005/Atom",
-      media: "http://search.yahoo.com/mrss/"
+      media: "http://search.yahoo.com/mrss/",
+      yt: "http://www.youtube.com/xml/schemas/2015"
     },
     trailingSlash: false,
     title: SITE_TITLE,
