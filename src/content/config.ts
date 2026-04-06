@@ -19,11 +19,12 @@ const projects = defineCollection({
   type: "content",
   schema: ({ image }) => z.object({
     title: z.string(),
-    titleLong: z.string(),
-    url: z.string(),
-    image: image(),
+    subtitle: z.string(),
+    description: z.string(),
     startedOn: z.date(),
-    completedOn: z.date().optional()
+    completedOn: z.date().optional(),
+    image: image().optional(),
+    url: z.string(),
   })
 })
 

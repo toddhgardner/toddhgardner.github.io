@@ -39,19 +39,21 @@ const projects = await Promise.all((await getCollection("projects"))
   <section class="project-list max-text-width">
     <h1 class="text-center">{title}</h1>
     <div class="text-center color-secondary">{description}</div>
-    <ul>
+    <ul class="unlist flex-column flex-gap-24">
       {projects.map((project) => (
         <li>
-          <article class="flex-column flex-gap-24">
-            <Picture
-              src={project.data.image}
-              alt={project.data.title}
-              formats={["webp"]}
-              widths={[900,1800]}
-              style="padding:16px;"/>
+          <article class="flex-column flex-gap-24" role="link" data-href={new URL(`/projects/${project.slug}`, Astro.url.origin)}>
+            {project.data.image ? (
+              <Picture
+                src={project.data.image}
+                alt={project.data.title}
+                formats={["webp"]}
+                widths={[900,1800]}
+                style="padding:16px;"/>
+            ) : ""}
             <h2>
               <a href={project.data.url} class="unlink">
-                {project.data.titleLong}
+                {project.data.title}
               </a>
             </h2>
             <div class="color-secondary">
