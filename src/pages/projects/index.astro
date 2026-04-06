@@ -52,7 +52,7 @@ const projects = await Promise.all((await getCollection("projects"))
                 style="padding:16px;"/>
             ) : ""}
             <h2>
-              <a href={project.data.url} class="unlink">
+              <a href={new URL(`/projects/${project.slug}`, Astro.url.origin)} class="unlink">
                 {project.data.title}
               </a>
             </h2>
@@ -68,11 +68,9 @@ const projects = await Promise.all((await getCollection("projects"))
                 </time>
               ) : "Present" }
             </div>
-            <div>
-              <project.rendered.Content />
-            </div>
+            <div class="color-secondary">{project.data.description}</div>
             <div style="text-align: center;">
-              <a role="button" href={project.data.url}>Learn more about {project.data.title}</a>
+              <a role="button" href={new URL(`/projects/${project.slug}`, Astro.url.origin)}>Learn more about {project.data.title}</a>
             </div>
           </article>
         </li>
